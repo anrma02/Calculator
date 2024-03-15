@@ -1,9 +1,10 @@
 import { LuDelete } from "react-icons/lu";
 import { FiMinus } from "react-icons/fi";
 import { useState } from "react";
+import { calculate } from "./calculator";
 
 const Keyboard = () => {
-     const [displayValue, setDisplayValue] = useState('');
+     const [displayValue, setDisplayValue] = useState("");
 
      const handleButtonClick = (num) => {
 
@@ -21,8 +22,6 @@ const Keyboard = () => {
           } else {
                setDisplayValue(prevValue => prevValue.slice(0, -1));
           }
-
-
      };
 
      const handleEqualButtonClick = () => {
@@ -34,51 +33,17 @@ const Keyboard = () => {
                setDisplayValue('Infinity');
                return;
           }
+
           try {
-               const operators = ['/', '*', '-', '+'];
-               let operator;
+               const result = calculate(displayValue);
+               setDisplayValue(result);
 
-               for (let op of operators) {
-                    if (displayValue.includes(op)) {
-                         operator = op;
-
-                    }
-               }
-
-               if (!operator) {
-                    return setDisplayValue(displayValue);
-               }
-               const [operand1, operand2] = displayValue.split(operator);
-               let result;
-               switch (operator) {
-                    case '/':
-                         result = parseFloat(operand1) / parseFloat(operand2);
-                         break;
-                    case "+":
-                         result = parseFloat(operand1) + parseFloat(operand2);
-                         break;
-                    case "-":
-                         result = parseFloat(operand1) - parseFloat(operand2);
-                         break;
-                    case "*":
-                         result = parseFloat(operand1) * parseFloat(operand2);
-                         break;
-                    default:
-                         throw new Error('Invalid operator');
-               }
-               if (displayValue.includes('/')) {
-                    result = parseFloat(result.toFixed(4));
-               }
-               setDisplayValue(result.toString());
-               console.log("🚀 ~ handleEqualButtonClick ~ result:", result);
+               console.log(result);
           } catch (error) {
-               setDisplayValue('Error');
+               console.log(error);
+               setDisplayValue("Error");
           }
-
-
-
      };
-
 
 
      return (
@@ -95,7 +60,7 @@ const Keyboard = () => {
                          {[7, 8, 9, 4, 5, 6, 1, 2, 3].map((num) => (
                               <button
                                    key={num}
-                                   className="bg-white p-3 rounded text-xl"
+                                   className="bg-white p-3 rounded text-xl "
                                    onClick={() => handleButtonClick(num)}
                               >
                                    {num}
