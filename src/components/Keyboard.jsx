@@ -27,7 +27,10 @@ const Keyboard = () => {
                setDisplayValue('Error');
                return;
           }
-
+          if (displayValue.includes('/0')) {
+               setDisplayValue('Error: Divide by zero');
+               return;
+          }
           try {
                let result = eval(displayValue);
                if (displayValue.includes('/')) {
@@ -41,7 +44,7 @@ const Keyboard = () => {
      return (
           <>
                <div className="bg-[#f1f1f1] h-[80px] overflow-hidden relative">
-                    <div className="text-4xl absolute bottom-0 right-0 p-2 font-black" id="display">
+                    <div className="text-[30px] absolute bottom-[-20px] right-0 p-2 font-black" id="display">
                          <span className="inline-block max-w-full truncate">{displayValue || "0"}</span>
                     </div>
                </div>
