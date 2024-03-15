@@ -27,15 +27,17 @@ const Keyboard = () => {
                setDisplayValue('Error');
                return;
           }
+
           try {
-               const result = eval(displayValue);
+               let result = eval(displayValue);
+               if (displayValue.includes('/')) {
+                    result = parseFloat(result.toFixed(4));
+               }
                setDisplayValue(result.toString());
-               console.log(result);
           } catch (error) {
                setDisplayValue('Error');
           }
      };
-
      return (
           <>
                <div className="bg-[#f1f1f1] h-[80px] overflow-hidden relative">
@@ -69,7 +71,7 @@ const Keyboard = () => {
                          <button className="bg-[#efefeff3] p-3 rounded w-[80px] flex justify-center items-center text-xl" name="-" onClick={handleButtonClick} >
                               <FiMinus />
                          </button>
-                         <button className="bg-blue-500 p-3 rounded text-xl text-white" onClick={handleEqualButtonClick}>=</button>
+                         <button className="bg-blue-800 p-3 rounded text-xl text-white" onClick={handleEqualButtonClick}>=</button>
                     </div>
                </div>
           </>
