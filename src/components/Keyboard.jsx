@@ -6,6 +6,7 @@ const Keyboard = () => {
      const [displayValue, setDisplayValue] = useState('');
 
      const handleButtonClick = (num) => {
+
           setDisplayValue(displayValue.concat(num.target?.name || num));
           console.log(num);
      };
@@ -20,6 +21,8 @@ const Keyboard = () => {
           } else {
                setDisplayValue(prevValue => prevValue.slice(0, -1));
           }
+
+
      };
 
      const handleEqualButtonClick = () => {
@@ -28,19 +31,56 @@ const Keyboard = () => {
                return;
           }
           if (displayValue.includes('/0')) {
-               setDisplayValue('Error: Divide by zero');
+               setDisplayValue('Infinity');
                return;
           }
           try {
-               let result = eval(displayValue);
+               const operators = ['/', '*', '-', '+'];
+               let operator;
+
+               for (let op of operators) {
+                    if (displayValue.includes(op)) {
+                         operator = op;
+
+                    }
+               }
+
+               if (!operator) {
+                    return setDisplayValue(displayValue);
+               }
+               const [operand1, operand2] = displayValue.split(operator);
+               let result;
+               switch (operator) {
+                    case '/':
+                         result = parseFloat(operand1) / parseFloat(operand2);
+                         break;
+                    case "+":
+                         result = parseFloat(operand1) + parseFloat(operand2);
+                         break;
+                    case "-":
+                         result = parseFloat(operand1) - parseFloat(operand2);
+                         break;
+                    case "*":
+                         result = parseFloat(operand1) * parseFloat(operand2);
+                         break;
+                    default:
+                         throw new Error('Invalid operator');
+               }
                if (displayValue.includes('/')) {
                     result = parseFloat(result.toFixed(4));
                }
                setDisplayValue(result.toString());
+               console.log("🚀 ~ handleEqualButtonClick ~ result:", result);
           } catch (error) {
                setDisplayValue('Error');
           }
+
+
+
      };
+
+
+
      return (
           <>
                <div className="bg-[#f1f1f1] h-[80px] overflow-hidden relative">
