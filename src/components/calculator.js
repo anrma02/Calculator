@@ -1,6 +1,16 @@
+/**
+ * @param {string} expression - Biểu thức cần đánh giá
+ * @returns {string} - Kết quả của biểu thức
+ */
+
 export const calculate = (expression) => {
      expression = expression.replace(/\s+/g, '');
 
+     expression = expression.replace(/\+\\-/g, '-');
+
+     if (expression[0] === '+') {
+          expression = expression.slice(1);
+     }
      const numbers = [];
      const operators = [];
 
@@ -57,4 +67,25 @@ export const calculate = (expression) => {
      const formattedResult = String(result).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1 ');
 
      return formattedResult;
+};
+
+/**
+ *
+ * @param {string} displayValue - Giá trị hiển thị trên màn hình
+ * @returns {string} - Kết quả của biểu thức
+ */
+
+export const checkConditions = (displayValue) => {
+     const conditions = [
+          { check: (value) => !value, result: 'Error' },
+          { check: (value) => value.includes('/0'), result: 'Infinity' },
+     ];
+
+     for (let condition of conditions) {
+          if (condition.check(displayValue)) {
+               return condition.result;
+          }
+     }
+
+     return null;
 };
