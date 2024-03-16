@@ -7,12 +7,18 @@ export const calculate = (expression) => {
      let currentNumber = '';
      for (let i = 0; i < expression.length; i++) {
           const char = expression[i];
-          if (!isNaN(char) || char === '.') {
+          if (
+               !isNaN(char) ||
+               char === '.' ||
+               (char === '-' && (i === 0 || isNaN(expression[i - 1])))
+          ) {
                currentNumber += char;
           } else {
                if (currentNumber) {
                     numbers.push(parseFloat(currentNumber));
                     currentNumber = '';
+               } else {
+                    throw new Error('Invalid expression');
                }
                operators.push(char);
           }
@@ -20,6 +26,8 @@ export const calculate = (expression) => {
 
      if (currentNumber) {
           numbers.push(parseFloat(currentNumber));
+     } else {
+          throw new Error('Invalid expression');
      }
 
      let result = numbers[0];
@@ -46,6 +54,7 @@ export const calculate = (expression) => {
                     throw new Error('Unknown operator');
           }
      }
+     const formattedResult = String(result).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1 ');
 
-     return result;
+     return formattedResult;
 };
