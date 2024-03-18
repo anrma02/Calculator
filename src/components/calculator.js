@@ -86,14 +86,6 @@ const divide = (a, b) => {
      return parseFloat((a / b).toFixed(3));
 };
 
-/**
- * Một object chứa các hàm tính toán
- * @type {object} - Một object chứa các hàm tính toán
- * @property {function} add - Hàm cộng 2 số
- * @property {function} subtract - Hàm trừ 2 số
- * @property {function} multiply - Hàm nhân 2 số
- * @property {function} divide - Hàm chia 2 số
- */
 const operations = {
      '+': add,
      '-': subtract,
