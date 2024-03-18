@@ -144,4 +144,3 @@ export const checkConditions = (displayValue) => {
      }
      return null;
 };
-//
