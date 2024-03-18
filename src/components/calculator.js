@@ -1,5 +1,5 @@
 /**
- * Hàm để xóa khoảng trắng và chuẩn hóa biểu thức
+ * Func để xóa khoảng trắng và chuẩn hóa biểu thức
  * @param {string} expression - Biểu thức cần chuẩn hóa
  * @returns {string} - Biểu thức sau khi chuẩn hóa
  */
@@ -8,7 +8,7 @@ const cleanExpression = (expression) => {
 };
 
 /**
- * Hàm để kiểm tra xem ký tự có phải là số hay không
+ * Func để kiểm tra xem ký tự có phải là số hay không
  * @param {string} char - Ký tự cần kiểm tra
  * @returns {boolean} - Kết quả kiểm tra
  */
@@ -17,7 +17,7 @@ const isNumeric = (char) => {
 };
 
 /**
- * Hàm để phân tách biểu thức thành các số và toán tử
+ * Func để phân tách biểu thức thành các số và toán tử
  *  @param {string} expression - Biểu thức cần phân tách
  * @returns {object} - Một object chứa mảng các số và mảng các toán tử
  */
@@ -48,8 +48,7 @@ const parseExpression = (expression) => {
 };
 
 /**
- * Hàm để tính toán kết quả của biểu thức
- *  Hàm cộng 2 số
+ *  Func cộng 2 số
  * @param {number[]} numbers - Mảng chứa các số
  * @param {string[]} operators - Mảng chứa các toán tử
  * @returns {number} - Kết quả của biểu thức
@@ -57,7 +56,7 @@ const parseExpression = (expression) => {
 const add = (a, b) => a + b;
 
 /**
- * Hàm trừ 2 số.
+ * Func trừ 2 số.
  * @param {number} a - Số bị trừ.
  * @param {number} b - Số trừ đi.
  * @returns {number} - Hiệu của a và b.
@@ -65,7 +64,7 @@ const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 
 /**
- * Hàm nhân 2 số.
+ * Func nhân 2 số.
  * @param {number} a - Số thứ nhất.
  * @param {number} b - Số thứ hai.
  * @returns {number} - Tích của a và b.
@@ -73,7 +72,7 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 
 /**
- * Hàm chia 2 số.
+ * Func chia 2 số.
  * @param {number} a - Số bị chia.
  * @param {number} b - Số chia.
  * @returns {number} - Thương của a và b.
@@ -87,12 +86,12 @@ const divide = (a, b) => {
 };
 
 /**
- * Một object chứa các hàm tính toán
- * @type {object} - Một object chứa các hàm tính toán
- * @property {function} add - Hàm cộng 2 số
- * @property {function} subtract - Hàm trừ 2 số
- * @property {function} multiply - Hàm nhân 2 số
- * @property {function} divide - Hàm chia 2 số
+ * Một object chứa các Func tính toán
+ * @type {object} - Một object chứa các Func tính toán
+ * @property {function} add - Func cộng 2 số
+ * @property {function} subtract - Func trừ 2 số
+ * @property {function} multiply - Func nhân 2 số
+ * @property {function} divide - Func chia 2 số
  */
 const operations = {
      '+': add,
@@ -102,7 +101,7 @@ const operations = {
 };
 
 /**
- * Hàm để tính toán kết quả của biểu thức
+ * Func để tính toán kết quả của biểu thức
  * @param {number[]} numbers - Mảng chứa các số
  * @param {string[]} operators - Mảng chứa các toán tử
  * @returns {number} - Kết quả của biểu thức
@@ -123,7 +122,7 @@ const computeResult = (numbers, operators) => {
 };
 
 /**
- * Hàm để tính toán kết quả của biểu thức
+ * Func để tính toán kết quả của biểu thức
  * @param {string} expression - Biểu thức cần tính toán
  * @returns {string} - Kết quả của biểu thức
  */
@@ -136,7 +135,7 @@ export const calculate = (expression) => {
 };
 
 /**
- * Hàm để kiểm tra các điều kiện đặc biệt của biểu thức
+ * Func để kiểm tra các điều kiện đặc biệt của biểu thức
  *  @param {string} displayValue - Giá trị hiển thị trên màn hình
  *  @returns {string} - Kết quả của biểu thức
  */

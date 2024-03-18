@@ -1,6 +1,5 @@
 import { LuDelete } from "react-icons/lu";
 import { useState } from "react";
-
 import { calculate, checkConditions } from "./calculator";
 
 const Keyboard = () => {
