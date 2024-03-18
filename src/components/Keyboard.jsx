@@ -1,44 +1,35 @@
 import { LuDelete } from "react-icons/lu";
-
 import { useState } from "react";
+
 import { calculate, checkConditions } from "./calculator";
 
 const Keyboard = () => {
      const [displayValue, setDisplayValue] = useState("");
 
+     // Function xử lý khi bấm nút số
      const handleButtonClick = (num) => {
           setDisplayValue(displayValue.concat(num.target?.name || num));
-
-          console.log(num);
      };
 
      // Function xử lý toán tử + - * /
-
      const handleOperatorButtonClick = (operator) => {
-          console.log("🚀 ~ handleOperatorButtonClick ~ operator:", operator);
           const lastCharIsOperator = displayValue.slice(-1).match(/[+\-*/]/);
           setDisplayValue(prevValue => lastCharIsOperator ? prevValue.slice(0, -1) + operator : prevValue + operator);
-          const test = /[+\-*/]/.test(displayValue);
-          console.log("🚀 ~ handleOperatorButtonClick ~ test", test);
      };
 
-
+     // Function xử lý khi bấm nút Clear
      const handleClearButtonClick = () => {
           setDisplayValue('');
-
      };
 
-
-     // Function handle xoa 1 ki tu
+     // Function xử lý khi bấm nút xóa
      const handleDeleteButtonClick = () => {
           if (displayValue === 'Error') {
                setDisplayValue('');
           } else {
                setDisplayValue(prevValue => prevValue.slice(0, -1));
           }
-
      };
-
 
      // Function xử lý khi bấm dấu bằng
      const handleEqualButtonClick = () => {
@@ -47,7 +38,6 @@ const Keyboard = () => {
           setDisplayValue(calculateResult);
      };
 
-
      return (
           <>
                <div className="bg-[#f1f1f1] h-[80px] overflow-hidden relative">
@@ -55,7 +45,6 @@ const Keyboard = () => {
                          <span className="inline-block max-w-full truncate">{displayValue || "0"}</span>
                     </div>
                </div>
-
                <div className=" bg-white h-6 mb-3 "></div>
                <div className="flex ">
                     <div className="grid grid-cols-3 grid-rows-5 gap-1  text-[#6d6d6d] ">
@@ -64,7 +53,6 @@ const Keyboard = () => {
                                    key={num}
                                    className={`bg-white p-3 rounded text-xl `}
                                    onClick={() => handleButtonClick(num)}
-
                               >
                                    {num}
                               </button>
