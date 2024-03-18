@@ -4,7 +4,7 @@
  * @returns {string} - Biểu thức sau khi chuẩn hóa
  */
 const cleanExpression = (expression) => {
-     return expression.replace(/\s+/g, '').replace(/\+\\-/g, '-');
+    return expression.replace(/\s+/g, "").replace(/\+\\-/g, "-");
 };
 
 /**
@@ -13,7 +13,7 @@ const cleanExpression = (expression) => {
  * @returns {boolean} - Kết quả kiểm tra
  */
 const isNumeric = (char) => {
-     return !isNaN(char) || char === '.';
+    return !isNaN(char) || char === ".";
 };
 
 /**
@@ -22,34 +22,45 @@ const isNumeric = (char) => {
  * @returns {object} - Một object chứa mảng các số và mảng các toán tử
  */
 const parseExpression = (expression) => {
-     const numbers = [];
-     const operators = [];
-     let currentNumber = '';
-     for (let i = 0; i < expression.length; i++) {
-          const char = expression[i];
-          if (isNumeric(char) || (char === '-' && (i === 0 || isNaN(expression[i - 1])))) {
-               currentNumber += char;
-          } else {
-               if (currentNumber) {
-                    numbers.push(parseFloat(currentNumber));
-                    currentNumber = '';
-               } else {
-                    throw new Error('Invalid expression');
-               }
-               operators.push(char);
-          }
-     }
-     if (currentNumber) {
-          numbers.push(parseFloat(currentNumber));
-     } else {
-          throw new Error('Invalid expression');
-     }
-     return { numbers, operators };
+    const numbers = [];
+    const operators = [];
+    let currentNumber = "";
+    for (let i = 0; i < expression.length; i++) {
+        const char = expression[i];
+        if (
+            isNumeric(char) ||
+            (char === "-" && (i === 0 || isNaN(expression[i - 1])))
+        ) {
+            currentNumber += char;
+        } else {
+            if (currentNumber) {
+                numbers.push(parseFloat(currentNumber));
+                currentNumber = "";
+            } else {
+                throw new Error("Invalid expression");
+            }
+            operators.push(char);
+        }
+    }
+    if (currentNumber) {
+        numbers.push(parseFloat(currentNumber));
+    } else {
+        throw new Error("Invalid expression");
+    }
+    return { numbers, operators };
 };
 
 /**
+<<<<<<< HEAD
+<<<<<<< HEAD
+ *  Hàm cộng 2 số
+=======
+ *  Func cộng 2 số
+>>>>>>> 8dfdc287543eadd9003bd8feb887dbc1d8343682
+=======
 
  *  Hàm cộng 2 số
+>>>>>>> d46f5bb71975ff726f3f942ace8b26f97f208872
  * @param {number[]} numbers - Mảng chứa các số
  * @param {string[]} operators - Mảng chứa các toán tử
  * @returns {number} - Kết quả của biểu thức
@@ -80,17 +91,17 @@ const multiply = (a, b) => a * b;
  * @throws {Error} Nếu b là 0.
  */
 const divide = (a, b) => {
-     if (b === 0) {
-          throw new Error('Divide by zero error');
-     }
-     return parseFloat((a / b).toFixed(3));
+    if (b === 0) {
+        throw new Error("Divide by zero error");
+    }
+    return parseFloat((a / b).toFixed(3));
 };
 
 const operations = {
-     '+': add,
-     '-': subtract,
-     '*': multiply,
-     '/': divide,
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
 };
 
 /**
@@ -102,16 +113,16 @@ const operations = {
  */
 
 const computeResult = (numbers, operators) => {
-     let result = numbers[0];
-     for (let i = 0; i < operators.length; i++) {
-          const operator = operators[i];
-          const nextNumber = numbers[i + 1];
-          if (!operations[operator]) {
-               throw new Error('Unknown operator');
-          }
-          result = operations[operator](result, nextNumber);
-     }
-     return result;
+    let result = numbers[0];
+    for (let i = 0; i < operators.length; i++) {
+        const operator = operators[i];
+        const nextNumber = numbers[i + 1];
+        if (!operations[operator]) {
+            throw new Error("Unknown operator");
+        }
+        result = operations[operator](result, nextNumber);
+    }
+    return result;
 };
 
 /**
@@ -120,11 +131,14 @@ const computeResult = (numbers, operators) => {
  * @returns {string} - Kết quả của biểu thức
  */
 export const calculate = (expression) => {
-     expression = cleanExpression(expression);
-     const { numbers, operators } = parseExpression(expression);
-     const result = computeResult(numbers, operators);
-     const formattedResult = String(result).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1 ');
-     return formattedResult;
+    expression = cleanExpression(expression);
+    const { numbers, operators } = parseExpression(expression);
+    const result = computeResult(numbers, operators);
+    const formattedResult = String(result).replace(
+        /(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g,
+        "$1 "
+    );
+    return formattedResult;
 };
 
 /**
@@ -133,15 +147,15 @@ export const calculate = (expression) => {
  *  @returns {string} - Kết quả của biểu thức
  */
 export const checkConditions = (displayValue) => {
-     const conditions = [
-          { check: (value) => !value, result: 'Error' },
-          { check: (value) => value.includes('/0'), result: 'Infinity' },
-     ];
-     for (let condition of conditions) {
-          if (condition.check(displayValue)) {
-               return condition.result;
-          }
-     }
-     return null;
+    const conditions = [
+        { check: (value) => !value, result: "Error" },
+        { check: (value) => value.includes("/0"), result: "Infinity" },
+    ];
+    for (let condition of conditions) {
+        if (condition.check(displayValue)) {
+            return condition.result;
+        }
+    }
+    return null;
 };
 //
